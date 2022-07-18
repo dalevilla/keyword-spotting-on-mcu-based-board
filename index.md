@@ -131,6 +131,43 @@ front, in comparison to the correct MFCCs with dark red color at the beginning o
 
 #### On-board inferencing
 
+##### Continuous audio inferencing
+To perform continuous inferencing, the input data are first stored into smaller sampling
+buffers (slices) which are then passed into the inferencing algorithm. The slices are sequentially
+placed into a First In First Out (FIFO) buffer which has the size of the input audio used in the model
+(in this study is one second). These slices are converted into features (this algorithm is also part of
+the inferencing process), specifically MFCC and then classified. Signal processing and inferencing
+is done in slices because it takes a lot of resources (in terms of computation time), where it takes
+as much as 500ms to compute the MFCC for a 1000ms window, with this method, no windows are
+overlapping thus it could miss some utterance of the keywords. Thus, it is more efficient to perform
+49
+feature extraction on each slice, put them into the FIFO buffer, and classify the whole second of
+data [8-9]. Below is a flowchart of the algorithm from [8]
+
+![image](https://user-images.githubusercontent.com/94373003/179547723-199b13ec-feb9-43c8-b3bc-bc6bb44ab4ab.png)
+
+Photo from [8]
+
+##### Smart switch algorithm
+For the smart switch algorithm, shown below is a flowchart. State variables are used (Boolean
+type), which are is_one and is_two. Both are initialized as false, and they are only assigned true
+when the classifier returns a score of greater than 0.6 for labels One and Two respectively. These
+state variables are mutually exclusive.
+
+If is_one is true, LED 1 can be turned on or off when the classifier returns a score greater
+than 0.6 for labels “on” or “off” respectively. LED 2 similarly also has this algorithm but instead
+uses state variable is_two. A change in state, for example, is_one changes from true to false, means
+that is_two is now true (because they are mutually exclusive) and the user can now control LED 2.
+However, this does not mean that the state of LED 1 also changes, the prior state of the LED is
+retained even if the state variables change. For example, LED 1 is on, then state variable is_two is
+now true, LED 1 cannot be controlled anymore but it remains on and can only be turned off by
+uttering “one” and “off”. Below shows the snippet of the Arduino code from Edge Impulse,
+showing the algorithm for the smart switch. buzzer_one and buzzer_two is just an indicator for is_one and is_two. It could also be replaced with an LED. 
+
+![image](https://user-images.githubusercontent.com/94373003/179548178-5cbec37e-599f-407c-8a3b-bbba02d8066f.png)
+
+
+
 
 
 ---
@@ -148,6 +185,11 @@ front, in comparison to the correct MFCCs with dark red color at the beginning o
 [6] https://ieeexplore.ieee.org/document/9568329
 
 [7] https://ieeexplore.ieee.org/document/9662116
+
+[8] https://docs.edgeimpulse.com/docs/tutorials/continuous-audio-sampling
+
+[9] https://forum.edgeimpulse.com/t/question-about-regular-vs-continuous-classification/3889
+
 
 
 
