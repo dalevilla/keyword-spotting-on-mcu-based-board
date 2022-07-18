@@ -46,7 +46,7 @@ The input shape for models is the size of the extracted MFCC, ℝ1 x 650. All th
 #### Hyperparameter Optimization 
 Since the models selected have different datasets and applications, the hyperparameters included in their study may not work properly on the use-case of KWS. Additionally, the dataset used in this study is also different from what the models used. Furthermore, the models selected also used different input size in comparison to what is used in the study.
 
-To address the prior problems, the hyperparameters need to be optimized to improve the performance of the models for this study’s application. This is implemented using Keras-Tuner, using their built-in RandomSearch algorithm. 
+To address the prior problems, the hyperparameters need to be optimized to improve the performance of the models for this study’s application. This is implemented using Keras-Tuner, with their built-in RandomSearch algorithm. 
 
 The hyperparameters tuned were dropout rates 1 and 2, learning rate, and batch size. For hyperparameters such
 as dropout rate and learning rate which are both float types, method Float() is used. For batch size,
