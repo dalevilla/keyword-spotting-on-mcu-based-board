@@ -65,7 +65,18 @@ model (out of the nine models) is the model that is deployed to Arduino 33. Mode
 on Edge Impulse because it currently has no feature for deploying models trained outside of Edge
 Impulse.
 
+Shown below is the hyperparameter search space of Mosquito and Trackwarn
+
+![image](https://user-images.githubusercontent.com/94373003/179526086-f9b853e4-08a7-4e02-82d2-375fa1514533.png)
+
+while below is Waqar
+
+![image](https://user-images.githubusercontent.com/94373003/179526164-04bcb10c-e5fa-4d2a-9d18-189581937aa0.png)
+
+
 #### Model Training and Deployment via Edge Impulse
+After hyperparameter tuning, the nine models shown below were selected due to their high validation accuracy. 
+
 
 #### On-board inferencing
 ---
