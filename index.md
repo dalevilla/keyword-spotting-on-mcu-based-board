@@ -75,7 +75,10 @@ while below is Waqar
 
 
 #### Model Training and Deployment via Edge Impulse
-After hyperparameter tuning, the nine models shown below were selected due to their high validation accuracy. TrackWarn Rank 1 (F1 score of .893) and Waqar Rank 2 (F1 score of
+After hyperparameter tuning, the top three models for each architecture (Waqar, Mosquito, and TrackWarn) was retrained on Edge Impulse. Edge Impulse uses Keras to train neural networks. However, since MCUs are restricted with their low memory and computational power. TensorFlow Lite for Microcontrollers is used to quantize the models. Using full-integer quantization significantly reduces memory usage by 62.96%. 
+
+Proceeding to the results, shown below are the hyperparameters of the top nine performing models.
+TrackWarn Rank 1 (F1 score of .893) and Waqar Rank 2 (F1 score of
 .888) are considered as the models to be deployed. Comparing their F1 scores, TrackWarn Rank 1
 is the better model, with percent difference of 0.56% or difference of 0.5% (as they are both
 percentage). However, considering the theoretical inference time, Waqar Rank 2 has a faster inference time, with percent difference of about 2% between the two models. This is where the
@@ -89,7 +92,13 @@ in milliseconds (in this case, about 0.5ms). If the percent difference between t
 
 ![image](https://user-images.githubusercontent.com/94373003/179527287-c0153a91-0350-4f82-81b2-7f563ad3676d.png)
 
+Evaluation of the deployment model shows that quantization caused an increase in accuracy, as opposed to the usual decrease. This might be due to the representative
+dataset used in the full integer quantization of the model. A full integer quantization requires a representative dataset which is a small subset
+of the dataset. This is used to estimate the input and output tensor since they are variable, compared
+to weights. The quantization process might have used a representative dataset that had a better/more
+biased portrayal of the dataset.
 
+Since the deployment model is picked, next then is deploying the model onto Arduino 33. This is easily done in Edge Impulse because they use TensorFlow Lite for Microcontrollers, which is used in quantizing models so they consume less memory. Especially since MCU-based boards have low memory and computational power.
 
 #### On-board inferencing
 ---
