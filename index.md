@@ -75,7 +75,20 @@ while below is Waqar
 
 
 #### Model Training and Deployment via Edge Impulse
-After hyperparameter tuning, the nine models shown below were selected due to their high validation accuracy. 
+After hyperparameter tuning, the nine models shown below were selected due to their high validation accuracy. TrackWarn Rank 1 (F1 score of .893) and Waqar Rank 2 (F1 score of
+.888) are considered as the models to be deployed. Comparing their F1 scores, TrackWarn Rank 1
+is the better model, with percent difference of 0.56% or difference of 0.5% (as they are both
+percentage). However, considering the theoretical inference time, Waqar Rank 2 has a faster inference time, with percent difference of about 2% between the two models. This is where the
+tradeoff between performance and computation time is considered, TrackWarn Rank 1 has better
+accuracy and performance of about 0.6% while Waqar Rank 2 has a faster inference computation
+time of about 2%. For the use-case of this study, a higher F1 score is preferred than faster inference
+time, thus TrackWarn Rank 1 is used. However, TrackWarn Rank 1 is only selected because the
+difference of the inference is only 2%, which is a small number considering the inference time is
+in milliseconds (in this case, about 0.5ms). If the percent difference between the two is to be 10-
+15% and the F1 score difference remained the same, Waqar Rank 2 will be selected.
+
+![image](https://user-images.githubusercontent.com/94373003/179527287-c0153a91-0350-4f82-81b2-7f563ad3676d.png)
+
 
 
 #### On-board inferencing
