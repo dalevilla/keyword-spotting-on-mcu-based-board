@@ -71,11 +71,17 @@ Impulse.
 ---
 # References
 [1] https://store-usa.arduino.cc/products/arduino-nano-33-ble-sense
+
 [2] https://arxiv.org/abs/1804.03209
+
 [3] https://dl.acm.org/doi/10.1145/2733373.2806390
+
 [4] https://zenodo.org/record/840395
+
 [5] https://ieeexplore.ieee.org/document/9526323
+
 [6] https://ieeexplore.ieee.org/document/9568329
+
 [7] https://ieeexplore.ieee.org/document/9662116
 
 
