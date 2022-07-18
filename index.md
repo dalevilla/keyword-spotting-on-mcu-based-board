@@ -23,8 +23,13 @@ To properly combine the datasets, ESC-50 was preprocessed as the same specificat
 
 
 #### Feature Extraction
+Audio is transformed into MFCC as the input to the CNN. This is done since CNN is commonly used in images (which are 2D signals) and audio is a 1D signal thus feature extraction is first performed on audio to convert it into 2D signal. Shown below is the process of MFCC conversion from audio of Edge Impulse. To extract MFCC, Edge Impulses uses SpeechPy, a Python package for extracting features from audio by Torfi [4].
 
+![image](https://user-images.githubusercontent.com/94373003/179495237-be499050-b3e3-4427-8a09-3e38ac9509aa.png)
 
+MFCC is a signal processing function offered by Edge Impulse which converts raw audio data into mel-frequency spectrogram. Shown below is a pictorial process of the conversion.
+
+![image](https://user-images.githubusercontent.com/94373003/179495480-c79ff04a-7797-413f-8a10-4be8c7f62680.png)
 
 #### CNN Model Selection
 
@@ -38,9 +43,10 @@ To properly combine the datasets, ESC-50 was preprocessed as the same specificat
 [1] https://store-usa.arduino.cc/products/arduino-nano-33-ble-sense
 [2] https://arxiv.org/abs/1804.03209
 [3] https://dl.acm.org/doi/10.1145/2733373.2806390
+[4] https://zenodo.org/record/840395
 
 
-Since audio is a 1D signal and images are 2D, feature extraction is first performed on audio to convert it into 2D signal. One sample of algorithm used
+
 
 
 
