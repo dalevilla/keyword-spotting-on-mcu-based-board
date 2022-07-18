@@ -100,7 +100,39 @@ biased portrayal of the dataset.
 
 Since the deployment model is picked, next then is deploying the model onto Arduino 33. This is easily done in Edge Impulse because they use TensorFlow Lite for Microcontrollers, which is used in quantizing models so they consume less memory. Especially since MCU-based boards have low memory and computational power.
 
+##### MFCC Classification Analysis
+The MFCC of incorrect classifications can also be analyzed to determine why the model
+has the wrong predictions for some of the samples. Shown in Appendix F are 10 samples of On,
+Off, One, and Two; five properly classified, and five misclassified. It could be observed from the
+Off samples that a certain pattern can be inferred from the correctly classified samples. The patterns
+are boxed green below, which is colored dark red to light red from rows (coefficient axis) 0
+to 3, with length of around 16-25 in the columns (time axis). This pattern is followed by low energy
+shown as color blue. By listening to the audio of the samples, it could be deduced that the darker
+red part is the “o-“ sound while the lighter red is the “-ff” sound, which are then followed by silence.
+
+![image](https://user-images.githubusercontent.com/94373003/179546634-158670c5-d939-4ad2-917d-35e808c95e25.png)
+
+Evaluating the misclassified samples, the first MFCC looks like an “off” sound that
+immediately gets cut off. The second and third MFCC has no visible patterns forming which means
+it could just be noise. For the fifth, the pattern looks like “o-“ which means the time-shift of the
+audio exceeded the window, and the “-ff” sound was cut-off. Finally, the fourth sample looks like
+the MFCCs of the correct classifications.
+Verifying the patterns of the misclassified samples by listening to the audio, MFCC 1, 2,
+4, 5 has correct hypotheses. However for MFCC 3, an “a-“ sound is heard instead of noise. This
+might be an Off sample that was cut-off due to wrong time-shift.
+MFCC 2, 3, and 5 was misclassified because it was not a correct Off sample. The
+mislabeling might be due to improper data preprocessing (e.g., too much time-shift) or it might
+have been mislabeled by the person who labeled the data. For MFCC 1, it could be hypothesized
+that the network only learned the correct Off classification from Off samples followed by silence,
+hence the Off pattern from MFCC 1 being at the edge caused the network to misclassify it.
+However, MFCC 4 is a correct Off sample, and the MFCC formed looks similar to correctly
+classified MFCCs. The only difference might be that the pattern has a lighter shade of red in the
+front, in comparison to the correct MFCCs with dark red color at the beginning of the red line.
+
 #### On-board inferencing
+
+
+
 ---
 # References
 [1] https://store-usa.arduino.cc/products/arduino-nano-33-ble-sense
