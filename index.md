@@ -34,18 +34,17 @@ MFCC is a signal processing function offered by Edge Impulse which converts raw 
 #### CNN Model Selection
 Three models are adapted for this study’s use-case. These models should have small-footprint and low computation time. The application should also be sound/voice classification. To make the process easier, CNN models that have already been deployed to Arduino 33 are more preferred as opposed to models deployed on other microcontroller-based boards.
 
-The first model is from Waqar et al (2021), which is used for Speech Emotion Recognition (SER). The audio data is converted to MFCC, which is then used as the input for the CNN. The SER The SER application of the study is on anger classification, where they used 0.98 confidence as “angry”, 0.55 to 0.98 as “about to be angry” and less than 0.55 as “not angry”. The trained model was deployed onto Arduino 33. The model architecture is shown in Figure 3-7a.
+The first model is from Waqar et al [5], which is used for Speech Emotion Recognition (SER). The audio data is converted to MFCC, which is then used as the input for the CNN. The SER The SER application of the study is on anger classification, where they used 0.98 confidence as “angry”, 0.55 to 0.98 as “about to be angry” and less than 0.55 as “not angry”. The trained model was deployed onto Arduino 33. The model architecture is shown in Figure 3-7a.
 
-The second model is from Amjath and Kuhanesan (2021), which is a warning system for railway track workers, they named TrackWarn. The input used for the study is also MFCC. The model is a binary classification, with 0.7 confidence to be classified as the train sounds. The trained model was deployed to Arduino 33. The architecture is shown in Figure 3-7b.
+The second model is from Amjath and Kuhanesan [6], which is a warning system for railway track workers, they named TrackWarn. The input used for the study is also MFCC. The model is a binary classification, with 0.7 confidence to be classified as the train sounds. The trained model was deployed to Arduino 33. The architecture is shown in Figure 3-7b.
 
-Lastly, the third model is from Trivedi and Shroff (2021), which classifies three species of mosquitoes based on the sound of their wing beats. The input used for the study is Mel-Filterbank Energy, which is like MFCC, except DCT was not performed. The trained model was deployed to Arduino 33 using Edge Impulse. The architecture is seen in Figure 3-7c.
+Lastly, the third model is from Trivedi and Shroff [7], which classifies three species of mosquitoes based on the sound of their wing beats. The input used for the study is Mel-Filterbank Energy, which is like MFCC, except DCT was not performed. The trained model was deployed to Arduino 33 using Edge Impulse. The architecture is seen in Figure 3-7c.
 
-The input shape for models is the size of the extracted MFCC, ℝ1 x 650. All the convolution layers use ReLu as the activation layer. The output of the max pooling/last convolutional layer is flattened, followed by dropout (randomly dropping nodes to address overfitting) before going to the output layer with activation of SoftMax. The optimizer to be used is based on Mittermaier et al. (2021) which is Adam optimizer, and the loss function is categorical cross entropy. 
+The input shape for models is the size of the extracted MFCC, ℝ1 x 650. All the convolution layers use ReLu as the activation layer. The output of the max pooling/last convolutional layer is flattened, followed by dropout (randomly dropping nodes to address overfitting) before going to the output layer with activation of SoftMax. The optimizer to be used is Adam optimizer, and the loss function is categorical cross entropy. 
 
 ![image](https://user-images.githubusercontent.com/94373003/179495735-62e7e38a-cebb-4873-98d6-95b57f1015b1.png)
-
-
 #### Hyperparameter Optimization 
+
 
 #### Model Training and Deployment via Edge Impulse
 
@@ -56,8 +55,9 @@ The input shape for models is the size of the extracted MFCC, ℝ1 x 650. All th
 [2] https://arxiv.org/abs/1804.03209
 [3] https://dl.acm.org/doi/10.1145/2733373.2806390
 [4] https://zenodo.org/record/840395
-
-
+[5] https://ieeexplore.ieee.org/document/9526323
+[6] https://ieeexplore.ieee.org/document/9568329
+[7] https://ieeexplore.ieee.org/document/9662116
 
 
 
