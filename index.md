@@ -7,6 +7,8 @@ Proceeding to the discussion of terms for easier discussion, keyword spotting (K
 ### Arduino Nano 33 BLE Sense
 Arduino Nano 33 BLE Sense (Arduino 33) is an AI-enabled board—where AI-enabled means that it is compatible with existing AI software tools such as TensorFlow Lite for Microcontroller and Edge Impulse, etc.—operating at 3.3 V. It has multiple built-in sensors such as 9-axis inertial sensor, humidity and temperature sensor, barometric sensor, microphone, gesture sensor, proximity sensor, and light color and intensity sensor. It also has a Bluetooth Low Energy (BLE) chipset and can also be used as a Bluetooth host and client [1]. The pin diagram of Arduino 33 is shown below.
 
+This board was selected due to its compatibility with existing Tiny Machine Learning frameworks and its availability.
+
 ![image](https://user-images.githubusercontent.com/94373003/179490551-f4febdad-93bc-42f6-8bca-51ceafca4557.png)
 
 Photo from [1]
@@ -14,19 +16,25 @@ Photo from [1]
 ---
 # Methods
 ---
-### Machine Learning Design
----
+#### Data Preprocessing
+Two datasets—speech commands dataset v2 [2] and ESC-50 [3]—was combined in the study. 
 
 
-###
----
-#### Keyword Spotting
----
-#### IMU
+#### Feature Extraction
+
+#### CNN Model Selection
+
+#### Hyperparameter Optimization 
+
+#### Model Training and Deployment via Edge Impulse
+
+#### On-board inferencing
 ---
 # References
 [1] https://store-usa.arduino.cc/products/arduino-nano-33-ble-sense
-[2]
+[2] https://arxiv.org/abs/1804.03209
+[3] https://dl.acm.org/doi/10.1145/2733373.2806390
+
 
 Since audio is a 1D signal and images are 2D, feature extraction is first performed on audio to convert it into 2D signal. One sample of algorithm used
 
