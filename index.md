@@ -44,7 +44,26 @@ The input shape for models is the size of the extracted MFCC, ℝ1 x 650. All th
 
 ![image](https://user-images.githubusercontent.com/94373003/179495735-62e7e38a-cebb-4873-98d6-95b57f1015b1.png)
 #### Hyperparameter Optimization 
+Since the models selected have different datasets and applications, the hyperparameters included in their study may not work properly on the use-case of KWS. Additionally, the dataset used in this study is also different from what the models used. Furthermore, the models selected also used different input size in comparison to what is used in the study.
 
+To address the prior problems, the hyperparameters need to be optimized to improve the performance of the models for this study’s application. This is implemented using Keras-Tuner, using their built-in RandomSearch algorithm. 
+
+The hyperparameters tuned were dropout rates 1 and 2, learning rate, and batch size. For hyperparameters such
+as dropout rate and learning rate which are both float types, method Float() is used. For batch size,
+which are usually in powers of 2, an array is provided, which elements are chosen randomly and
+uniformly. The neural network is trained for 120 epochs.
+
+To compensate for the high epoch of 120 (in terms of computation time), Early Stopping
+is used, which stops the training of a neural network when the objective is not improving after n
+iterations, where n is the patience value set by the user. The objective used in this study is the
+validation accuracy with patience of 10. The objective is the validation accuracy since the test set
+is not included in the hyperparameter optimization (to avoid the hyperparameters being biased
+towards the test set).
+
+The top three models for each architecture are trained on Edge Impulse, where the best
+model (out of the nine models) is the model that is deployed to Arduino 33. Models are retrained
+on Edge Impulse because it currently has no feature for deploying models trained outside of Edge
+Impulse.
 
 #### Model Training and Deployment via Edge Impulse
 
